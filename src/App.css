@@ -1,0 +1,152 @@
+/* Form.css */
+
+.form-container {
+  max-width: 75%;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-header {
+  display: inline-block;
+  width: 100%;
+}
+
+.App-logo {
+  float:left;
+  width: 20%;
+  
+}
+
+.form-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+}
+
+.columnright {
+  margin-left: 10px;
+}
+
+.checkbox {
+  width: 25px;
+  height: 25px;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: -5px;
+  margin-bottom: 10px;
+}
+
+.submit-button {
+  width: 20%;
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button-containercenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.submit-button-containerright {
+  display: flex;
+  justify-content: right;
+  align-items: right;
+}
+
+.child-div-box-model {
+  border: 1px solid black;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.section-header {
+  background-color: #277ea6;
+  border-radius: 5px;
+  color:white;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+table {
+  border: 2px solid black;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-top: 1px solid black;
+  border-collapse: collapse;
+}
+
+td {
+  text-align: center;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-top: 1px solid black;
+  border-collapse: collapse;
+}
+.Toastify__toast-container {
+  width: 1000px !important;
+  height: auto !important; /* Adjust this based on your needs */
+}
+
+.Toastify__toast {
+  font-size: 16px !important; /* Customize the font size */
+  min-height: 100px !important; /* Set minimum height */
+  align-items: center; /* Center the content */
+}
+
+.custom-toast {
+  width: 1000px !important;
+  min-height: 100px !important;
+}
+
+.custom-toast-body {
+  font-size: 16px !important;
+}
