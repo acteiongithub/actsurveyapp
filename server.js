@@ -2,21 +2,23 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
-const PORT = 3007;
+const PORT = 3005;
 
 // Middleware
-app.use(cors({ origin: 'http://act-survey-app.s3-website-us-east-1.amazonaws.com/' }));
+app.use(cors({ origin: process.env.CORS_ORIGIN || '', }));
 app.use(bodyParser.json());
 
 // MySQL connection
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'TILE2244%',
-    database: 'survey_db'
-});
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    debug: process.env.DB_DEBUG === 'true',
+  });
 
 db.connect((err) => {
     if (err) {
@@ -31,8 +33,24 @@ app.get('/api/type-enum-values/survey_questions/Type', (req, res) => {
     const query = "SELECT COLUMN_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'survey_questions' AND COLUMN_NAME = 'Type'";
     db.query(query, (err, result) => {
         if (err) {
-            console.error('Error fetching ENUM values:', err);
+            console.error('Error fetching ENUM values:', {
+                message: err.message,
+                sqlMessage: err.sqlMessage,
+                code: err.code,
+                stack: err.stack
+            });
             res.status(500).send('Internal Server Error');
+            return;
+        }
+        if (!result || result.length === 0) {
+            console.error('No matching column found in INFORMATION_SCHEMA for the query:', query);
+            res.status(404).send('No matching column found');
+            return;
+        }
+        const columnType = result[0].COLUMN_TYPE;
+        if (!columnType || !columnType.match(/enum\((.*)\)/)) {
+            console.error('COLUMN_TYPE does not match the expected ENUM format:', columnType);
+            res.status(500).send('Unexpected column type format');
             return;
         }
         const values = result[0].COLUMN_TYPE.match(/enum\((.*)\)/)[1].replace(/'/g, "").split(",");

@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
-const API_BASE_URL = window.location.hostname === "localhost" ? "http://localhost:3007" : "https://54.86.122.234";
+const API_BASE_URL = window.location.hostname === 'localhost' ? process.env.LOCALHOST_URL : process.env.PUBLIC_HOST_URL;
 
 const App = () => {
   const [surveyname, setName] = useState('');
